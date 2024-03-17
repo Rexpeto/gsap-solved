@@ -1,5 +1,48 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 const GsapTimeline = () => {
   // TODO: Implement the gsap timeline
+  const timeline = gsap.timeline({
+    repeat: -1,
+    repeatDelay: 1,
+    yoyo: true,
+  });
+
+  useGSAP(() => {
+    timeline.to("#yellow-box", {
+      x: 700,
+      duration: 4,
+      repeat: -1,
+      scale: 0.7,
+      borderRadius: 50,
+      rotate: 360,
+      yoyo: true,
+      ease: "back.inOut",
+    });
+
+    timeline.to("#yellow-box", {
+      y: 40,
+      duration: 2,
+      repeat: -1,
+      scale: 2,
+      borderRadius: 100,
+      rotate: 360,
+      yoyo: true,
+      ease: "back.inOut",
+    });
+
+    timeline.to("#yellow-box", {
+      x: 400,
+      duration: 4,
+      repeat: -1,
+      scale: 1,
+      borderRadius: 10,
+      rotate: 360,
+      yoyo: true,
+      ease: "back.inOut",
+    });
+  });
 
   return (
     <main>
@@ -36,7 +79,12 @@ const GsapTimeline = () => {
       </p>
 
       <div className="mt-20 space-y-10">
-        <button onClick={() => {}} className="bg-gray-800 hover:bg-gray-700">
+        <button
+          onClick={() => {
+            timeline.paused(!timeline.paused());
+          }}
+          className="bg-gray-800 hover:bg-gray-700"
+        >
           Play/Pause
         </button>
 
